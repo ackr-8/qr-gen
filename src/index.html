@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QR Gen</title>
+    <link href="min/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        html,
+        body,
+        #app {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-full h-full bg-gradient-to-r from-blue-500 to-green-500 absolute flex flex-row justify-center items-center">
+        <div class="bg-green-400 m-auto shadow-lg p-5 rounded">
+            <div class="flex flex-col justify-center w-full h-full items-center">
+                <div class="flex flex-row items-center h-10 rounded border-green-700 bg-green-700 border-1 text-white ">
+                    <a class="flex-2 p-2 block flex flex-row items-center justify-center hover:bg-green-600 h-full" href="https://github.com/zxing/zxing/wiki/Barcode-Contents" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    </a>
+                    <input type="text" placeholder="Content"
+                        class="h-full pr-4 pl-1 flex-1 text-current bg-transparent focus:outline-none" id="linkBox"
+                        value="https://duckduckgo.com">
+                    <button class="h-full flex-2 pr-2 pl-2 border-l-green-700 border-l-1 hover:bg-green-600"
+                        id="genBtn">Generate QR Code</button>
+                </div>
+                <div id="qrcode" class="m-2" style="border: 5px solid #34D399;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="min/qrcode.min.js"></script>
+    <script>
+        window.onload = () => {
+            let btn = document.getElementById("genBtn")
+            let link = document.getElementById("linkBox")
+            let qr = document.getElementById("qrcode");
+
+            var gen = new QRCode(qr)
+            btn.onclick = () => {
+                gen.makeCode(link.value)
+            }
+        }
+    </script>
+</body>
+
+</html>
