@@ -1,8 +1,7 @@
 FROM alpine:latest
 
-RUN apk update && apk add --update darkhttpd && \
-  mkdir -p /src && \
-  rm -rf /var/cache/apk/*
+RUN apk add --nocache darkhttpd && \
+  mkdir -p /src 
 
 COPY ./src/ /src/
 
